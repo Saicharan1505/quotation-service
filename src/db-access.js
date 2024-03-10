@@ -20,11 +20,17 @@ async function selectAQuotation(){
     
     }
 
-    console.log(collection);
+    // console.log(collection);
+    // const result = await collection.findOne({});
+    // return result;
+
     const result = await collection.findOne({});
+    console.log("Fetched Quotation:", result); // This line logs the fetched document
     return result;
 
 }
+
+
 
 module.exports = {selectAQuotation}
 

@@ -16,14 +16,17 @@ app.get("/image", async (req, res) => {
             host: FILE_STORAGE_HOST,
             port : FILE_STORAGE_PORT,
             path: `/image?path=${imagePath}`,
-            methos: `GET`,
+            method: `GET`,
             headers: req.headers
         },
         forwardResponse => {
             res.writeHeader(forwardResponse.statusCode, forwardResponse.headers);
             forwardResponse.pipe(res);
-        }
-    );
+        });
+        // forwardRequest.on('error', (error) => {
+        //     console.error('Error forwarding request:', error);
+        //     res.status(502).send('Bad-Gateway');
+        // });
     req.pipe(forwardRequest);
 });
 
